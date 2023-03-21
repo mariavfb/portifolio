@@ -1,0 +1,29 @@
+body{
+    color: white;
+    text-align: center;
+    background-color: #631d50;
+    /* background-image: linear-gradient(#af8ce5 0%, #af8ce5 7%, #af8ce5 80%, #af8ce5   100%);  */
+}
+.table-bg{
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px 15px 0 0;
+}
+
+.box-search{
+    display: flex;
+    justify-content: center;
+    gap: .1%;
+}
+.img{
+    width: 30%;
+    height: 30%;
+}
+
+h1{
+    text-align: center;
+}
+
+.navColor{
+    background-color: #580141;
+}
+
