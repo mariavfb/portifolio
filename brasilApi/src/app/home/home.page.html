@@ -1,11 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Pesquisa de Endereço
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">LOCADORA</ion-title>
@@ -15,8 +8,8 @@
   <div id="container">
     <ion-list>
       <ion-item>
-        <ion-label>CPF</ion-label>
-        <ion-input type="text" [(ngModel)]="cpfDigitado"></ion-input>
+        <ion-label positon="floating">CPF: </ion-label>
+        <ion-input type="text" [(ngModel)]="cpfDigitado" (ngModelChange)="valida()"></ion-input>
         <ng-container *ngIf="cpfInvalido; else cpfValido">
           <ion-text color="danger">
             CPF inválido.
@@ -28,27 +21,26 @@
             CPF válido.
           </ion-text>
         </ng-template>
-
       </ion-item>
 
       <ion-item>
-        <ion-label [(ngModel)]="nome">Nome: </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-label position="floating">Nome: </ion-label>
+        <ion-input type="text" [(ngModel)]="nome"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label [(ngModel)]="tel">Telefone: </ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-label position="floating">Telefone: </ion-label>
+        <ion-input type="tel" [(ngModel)]="tel"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label [(ngModel)]="cel">Celular: </ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-label position="floating">Celular: </ion-label>
+        <ion-input type="tel" [(ngModel)]="cel"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>CEP: </ion-label>
-        <ion-input type="text" [(ngModel)]="cepValue"></ion-input>
+        <ion-label position="floating">CEP: </ion-label>
+        <ion-input type="text" [(ngModel)]="cepValue" (ngModelChange)="valida()"></ion-input>
       </ion-item>
       <ion-card *ngIf="cepInfo">
         <ion-item>
@@ -70,21 +62,45 @@
           <ion-label>UF: </ion-label>
           <ion-input type="text">{{cepInfo.state}}</ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Número: </ion-label>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Complemento: </ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
       </ion-card>
+      <ion-item>
+        <ion-label  position="floating">Número: </ion-label>
+        <ion-input type="number" [(ngModel)]="numero" required></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label position="floating">Complemento: </ion-label>
+        <ion-input type="text" [(ngModel)]="complemento" required></ion-input>
+      </ion-item>
     </ion-list>
-    <ion-button expand="block" (click)="cadastra()">cadastrar</ion-button>
-    <ion-button expand="block" (click)="cancela()">cancelar</ion-button>
-
+    <div *ngIf="alerta" [(ngModel)]="alerta">
+      <ion-card color="danger">
+        <ion-card-header>
+          <ion-card-title>
+            Confira as informações.
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <div *ngIf="cadastrado" [(ngModel)]="cadastrado">
+      <ion-card color="success">
+        <ion-card-header>
+          <ion-card-title>
+            Cadastrado com sucesso!
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-sm="4">
+          <ion-button expand="block" (click)="cancela()" color="danger">Cancelar</ion-button>
+        </ion-col>
+        <ion-col size="6" size-sm="4">
+          <ion-button expand="block" (click)="cadastra()" color="primary">Cadastrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
 </ion-content>
